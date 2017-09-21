@@ -3,16 +3,13 @@ services:
   bpm:
     build: 
       context: ./sim-dev-jbpm
-      args: 
-        - SRC_GIT_REPO=http://docker:docker12345@gitlab.ancine.gov.br/ancine/sin-bpm.git
-        - SRC_GIT_BRANCH=feature/back-Atualiza-dependencias-para-eap6.4.16-bpms6.4.4
     image: ancine/sim-dev-jbpm:latest
     ports:
       - "8001:8001"
       - "8080:8080"
       - "9990:9990"
-    volumes:
+    # volumes:
       # - ./src:/opt/jboss/src
-      - ./data:/opt/jboss/data
-      - ./logs:/opt/jboss/wildfly/standalone/log
-      - ~/.m2:/opt/jboss/.m2
+      # - ./data:/opt/jboss/data
+      # - ./logs:/opt/jboss/wildfly/standalone/log
+      # - ~/.m2:/opt/jboss/.m2

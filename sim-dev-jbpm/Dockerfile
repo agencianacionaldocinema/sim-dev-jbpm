@@ -1,17 +1,12 @@
 FROM ancine/jbpm
 
-ARG SRC_GIT_REPO=http://gitlab.ancine.gov.br/ancine/sin-bpm.git
-ARG SRC_GIT_BRANCH=develop
-
 ENV SRC_DIR=/opt/jboss/src
 ENV DATA_DIR /opt/jboss/data
 
 USER jboss
 RUN mkdir -p $SRC_DIR $DATA_DIR
 
-COPY support/start.sh /opt/jboss/
-COPY support/standalone-full-jbpm.xml $JBOSS_HOME/standalone/configuration/
-COPY support/repositorio-local-niogit /opt/jboss/repositorio-local-niogit
+COPY support/standalone-full.xml $JBOSS_HOME/standalone/configuration/
 
 USER root
 RUN yum install -y git \
@@ -21,12 +16,9 @@ RUN yum install -y git \
     && mv /usr/share/apache-maven-3.2.5 /usr/share/maven \
     && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn \
     && mkdir /opt/jboss/.m2 \
-    && chown -R jboss:jboss $JBOSS_HOME/standalone/configuration/standalone-full-jbpm.xml \
+    && chown -R jboss:jboss $JBOSS_HOME/standalone/configuration/standalone-full.xml \
     /opt/jboss/.m2 \
-    /opt/jboss/repositorio-local-niogit \
-    /opt/jboss/start.sh \
-    $DATA_DIR \
-    && chmod +x /opt/jboss/start.sh
+    $DATA_DIR 
 USER jboss
 
 RUN $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u admin -p ancine1! -ro analyst,admin,user,manager,kiemgmt,kie-server,rest-all,SIM_PROPONENTE,SIM_COORD_TRIAGEM,SIM_COORD_ANALISE_DIREITOS,SIM_COORD_ANALISE_TECNICA,SIM_SUP_FOMENTO --silent \
@@ -41,9 +33,7 @@ RUN $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u admin -p ancine1! -ro 
     && $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u coord.analise.tecnica.2 -p ancine1! -ro SIM_COORD_ANALISE_TECNICA,user,manager --silent \
     && $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u sup.fomento -p ancine1! -ro SIM_SUP_FOMENTO,user,manager --silent
 
-RUN git clone $SRC_GIT_REPO --single-branch -b $SRC_GIT_BRANCH $SRC_DIR/sin-bpm ; exit 0
-
 VOLUME $DATA_DIR
 VOLUME /opt/jboss/.m2
 
-CMD ["/opt/jboss/start.sh"]
+CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-c", "standalone-full.xml",  "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
