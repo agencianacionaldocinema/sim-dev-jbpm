@@ -31,7 +31,19 @@ RUN $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u admin -p ancine1! -ro 
     && $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u coord.analise.direitos.2 -p ancine1! -ro SIM_COORD_ANALISE_DIREITOS,user,manager --silent \
     && $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u coord.analise.tecnica.1 -p ancine1! -ro SIM_COORD_ANALISE_TECNICA,user,manager --silent \
     && $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u coord.analise.tecnica.2 -p ancine1! -ro SIM_COORD_ANALISE_TECNICA,user,manager --silent \
-    && $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u sup.fomento -p ancine1! -ro SIM_SUP_FOMENTO,user,manager --silent
+    && $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u sup.fomento -p ancine1! -ro SIM_SUP_FOMENTO,user,manager --silent \
+    && $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u krisv -p krisv -ro admin,analyst,kie-server,rest-all  --silent \
+    && $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u john -p john -ro analyst,Accounting,PM,kie-server,rest-all --silent \
+    && $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u sales-rep -p sales-rep -ro analyst,sales,kie-server,rest-all --silent \
+    && $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u katy -p katy -ro analyst,HR,kie-server,rest-all --silent \
+    && $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u jack -p jack -ro analyst,IT,kie-server,rest-all --silent \
+    && $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u maciek -p maciek1!  -ro employees --silent \
+    && $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u tihomir -p tihomir1! -ro employees,apple,dell,lenovo,other --silent \
+    && $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u krisv -p krisv1! -ro employees,manager --silent \
+    && $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u mary -p mary1! -ro employees,manager --silent \
+    && $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u paul -p paul1! -ro employees,manager --silent \
+    && $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u kieserver -p kieserver1! -ro employees --silent 
+
 
 VOLUME $DATA_DIR
 VOLUME /opt/jboss/.m2
