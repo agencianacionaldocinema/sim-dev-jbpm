@@ -59,7 +59,7 @@
         <property name="org.kie.override.deploy.enabled" value="true"/>
 
         <property name="org.kie.server.location" value="http://localhost:8080/kie-server/services/rest/server"/>
-        <property name="org.kie.server.controller" value="http://localhost:8080/business-central/rest/controller"/>
+        <property name="org.kie.server.controller" value="http://localhost:8080/jbpm-console/rest/controller"/>
         <property name="org.kie.server.controller.user" value="kiecontrolleruser"/>
         <property name="org.kie.server.controller.pwd" value="kiecontrolleruser1!"/>
         <property name="org.kie.server.user" value="kiecontrolleruser"/>
